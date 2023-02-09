@@ -12,11 +12,9 @@ let dummyData = [
     Pizza(hasPepperoni: false, hasSpinach: true, starRating: 5, name: "Spinach Pizza", description: "A pizza with only spinach"),
     Pizza(hasPepperoni: false, hasSpinach: false, starRating: 1, name: "Dough Pizza", description: "A pizza with neither pepperoni nor spinach. Just bland dough however you cut it."),
     Pizza(hasPepperoni: true, hasSpinach: false, starRating: 1, name: "Pepperoozel Pizza", description: "A pizza with pepperoni and a zesty twist."),
-    Pizza(hasPepperoni: false, hasSpinach: false, starRating: 1, name: "Cheese Pizza", description: "A pizza with nothign but cheese."),
+    Pizza(hasPepperoni: false, hasSpinach: false, starRating: 1, name: "Cheese Pizza", description: "A pizza with nothing but cheese."),
     Pizza(hasPepperoni: false, hasSpinach: false, starRating: 1, name: "Canadian Bacon Pizza", description: "A pizza with bacon from Canada."),
     Pizza(hasPepperoni: true, hasSpinach: true, starRating: 1, name: "Everything Pizza", description: "A pizza for the man who has it all."),
-    
-    
 ]
 
 struct HomeView: View {
@@ -30,12 +28,14 @@ struct HomeView: View {
                             .frame(height: 80)
                             .foregroundColor(.blue)
                         List(data) { data in
-                            HStack {
-                                Text(data.name)
-                                Spacer()
-                                Text(String(data.starRating))
+                            NavigationLink(destination: DetailView(pizza: data)) {
+                                HStack {
+                                    Text(data.name)
+                                    Spacer()
+                                    Text(String(data.starRating))
+                                }
+                                .padding()
                             }
-                            .padding()
                         }
                         .cornerRadius(8)
                     }
@@ -50,7 +50,6 @@ struct HomeView: View {
             .padding()
         }
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
